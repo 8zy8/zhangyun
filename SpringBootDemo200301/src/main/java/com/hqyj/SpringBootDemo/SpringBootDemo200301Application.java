@@ -13,10 +13,10 @@ public class SpringBootDemo200301Application extends SpringBootServletInitialize
 		
 	}
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(SpringBootDemo200301Application.class);
-	}
+//	@Override
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//		return builder.sources(SpringBootDemo200301Application.class);
+//	}
 
 	
 
