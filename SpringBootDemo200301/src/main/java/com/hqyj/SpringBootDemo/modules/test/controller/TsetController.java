@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hqyj.SpringBootDemo.modules.test.vo.ApplicationTest;
 
 @Controller
+@RequestMapping("/test")
 public class TsetController {
 	
 	@Value("${server.port}")
@@ -35,7 +36,7 @@ public class TsetController {
 	/**
 	 * 127.0.0.1/test/log
 	 */
-	@RequestMapping("/test/log")
+	@RequestMapping("/log")
 	@ResponseBody
 	public String logTest() {
 		// TRACE<DEBUG<INFO<WARN<ERROR
@@ -49,7 +50,7 @@ public class TsetController {
 		return "This is log test.";
 	}
 	
-	@RequestMapping("/test/config")
+	@RequestMapping("/config")
 	@ResponseBody
 	public String config() {
 		StringBuffer sb =new StringBuffer();
@@ -68,10 +69,10 @@ public class TsetController {
 		return sb.toString();
 	}
 	
-	@RequestMapping("/test/desc")
+	@RequestMapping("/desc")
 	@ResponseBody
 	public String run(){
-		return "this is a page.";
+		return "this is a some page.";
 	}
 }
 
