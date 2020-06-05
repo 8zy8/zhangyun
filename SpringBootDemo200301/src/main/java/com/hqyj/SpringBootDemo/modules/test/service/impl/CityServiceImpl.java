@@ -9,16 +9,21 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.hqyj.SpringBootDemo.modules.common.vo.Result;
+import com.hqyj.SpringBootDemo.modules.common.vo.Result.ResultStatus;
 import com.hqyj.SpringBootDemo.modules.common.vo.SearchVo;
 import com.hqyj.SpringBootDemo.modules.test.dao.CityDao;
 import com.hqyj.SpringBootDemo.modules.test.entity.City;
 import com.hqyj.SpringBootDemo.modules.test.service.CityService;
+import com.hqyj.SpringBootDemo.utils.RedisUtils;
 
 @Service
 public class CityServiceImpl implements CityService{
 
 	@Autowired
 	private CityDao cityDao;
+	@Autowired
+	private RedisUtils redisUtils;
 	
 	public List<City> getCitiesByCountryId2(int countryId) {
 		return Optional.ofNullable(cityDao.getCitiesByCountryId2(countryId))
@@ -47,27 +52,29 @@ public class CityServiceImpl implements CityService{
 				.orElse(Collections.emptyList()));
 	}
 
-	
+
+	public Result<City> insertCity(City city) {
+//		city.setDateCreated(new Date());
+		cityDao.insertCity(city);
+		return new Result<City>(ResultStatus.SUCCESS.status, "success", city);
+	}
+
+
+	public Result<Object> deleteCityByCityId(int num) {
+		cityDao.deleteCityByCityId(num);
+		return new Result<Object>(ResultStatus.SUCCESS.status, "success");
+	}
+
+
+	public Result<City> updateCityById(City city) {
+		cityDao.updateCityById(city);;
+		return new Result<City>(ResultStatus.SUCCESS.status, "success",city);
+	}
+
+
+	public Object migrateCitiesByCountryId(int countryId) {
+		List<City> cities = getCitiesByCountryId2(countryId);
+		redisUtils.set("cities", cities);
+		return redisUtils.get("cities");
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
