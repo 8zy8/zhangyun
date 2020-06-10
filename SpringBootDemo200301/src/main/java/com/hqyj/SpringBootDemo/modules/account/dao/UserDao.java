@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.hqyj.SpringBootDemo.modules.account.entity.User;
+import com.hqyj.SpringBootDemo.modules.common.vo.Result;
 import com.hqyj.SpringBootDemo.modules.common.vo.SearchVo;
 import com.hqyj.SpringBootDemo.modules.test.entity.City;
 
@@ -19,18 +20,24 @@ public interface UserDao {
 	@Select("select * from user where user_id = #{userId}")
 	List<User> getUserByUserId(int userId);
 	
+	@Select("select * from user where user_name=#{userName} and password=#{password} ")
+	List<User> getUserByNamePassword(String userName, String password);
 	
 	
-	@Insert("Insert into user (city_name,country_id,district) value(#{cityName},#{countryId},#{district})")
-	@Options(useGeneratedKeys=true, keyColumn="city_id",keyProperty="cityId")
-	void insertCity(City city);
 	
-	@Delete("delete from m_city where city_id = #{num}")
-	void deleteCityByCityId(int num);
 	
-	@Update("update m_city set city_name=#{cityName},country_id=#{countryId} where city_id = #{cityId}")
-	void updateCityById(City city);
+	@Insert("Insert into user (user_name,password,create_date) value(#{userName},#{password},#{createDate})")
+	@Options(useGeneratedKeys=true, keyColumn="user_id",keyProperty="userId")
+	void insertUser(User user);
+	
+	
+	@Delete("delete from user where user_id = #{userId}")
+	void deleteCityByUserId(int userId);
+	
+	@Update("update user set user_name=#{userName},password=#{password} where user_id = #{userId}")
+	void updateUserById(User user);
 }
+
 
 
 

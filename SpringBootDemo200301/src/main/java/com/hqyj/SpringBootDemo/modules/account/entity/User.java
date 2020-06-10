@@ -21,6 +21,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name="user")
 public class User {
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", createDate="
+				+ createDate + ", rememberMe=" + rememberMe + ", roles=" + roles + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userId;

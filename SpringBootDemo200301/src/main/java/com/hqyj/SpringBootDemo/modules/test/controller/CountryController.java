@@ -20,7 +20,7 @@ public class CountryController {
 	 */
 	@RequestMapping("/country/{countryId}")
 	public Country grtCountryByCountryId(@PathVariable int countryId) {
-		return countryService.grtCountryByCountryId(countryId);
+		return countryService.getCountryByCountryId(countryId);
 	}
 
 	

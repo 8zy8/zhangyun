@@ -13,7 +13,7 @@ public class CountryServiceImpl implements CountryService{
 	@Autowired
 	private CountryDao countryDao;
 	
-	public Country grtCountryByCountryId(int countryId) {
+	public Country getCountryByCountryId(int countryId) {
 		return countryDao.getCountryByCountryId(countryId);
 	}
 

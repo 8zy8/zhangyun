@@ -5,7 +5,7 @@ public class Result<T> {
 
 	private int status;
 	private String message;
-	private T object;
+	private T obj;
 	
 	public Result() {}
 	
@@ -14,10 +14,10 @@ public class Result<T> {
 		this.message = message;
 	}
 	
-	public Result(int status, String message, T object) {
+	public Result(int status, String message, T obj) {
 		this.status = status;
 		this.message = message;
-		this.object = object;
+		this.obj = obj;
 	}
 	
 	
@@ -34,11 +34,11 @@ public class Result<T> {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public T getObject() {
-		return object;
+	public T getObj() {
+		return obj;
 	}
-	public void setObject(T object) {
-		this.object = object;
+	public void setObj(T obj) {
+		this.obj = obj;
 	}
 	
 	
